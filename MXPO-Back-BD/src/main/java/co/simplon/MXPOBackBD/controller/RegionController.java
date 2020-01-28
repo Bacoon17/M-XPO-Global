@@ -22,17 +22,17 @@ public class RegionController {
 	@Autowired
 	private RegionRepository regionRepository;
 
-	@GetMapping("/regions")
-	public List<Region> getAllRegion() {
-		return regionRepository.findAll();
-	}
-
-	//
-	@GetMapping("/regions/{id}")
-	public ResponseEntity<Optional<Region>> getRegionById(@PathVariable(value = "id") String codeRegion) {
-		Optional<Region> region = regionRepository.findById(codeRegion);
-		return ResponseEntity.ok().body(region);
-	}
+//	@GetMapping("/regions")
+//	public List<Region> getAllRegion() {
+//		return regionRepository.findAll();
+//	}
+//
+//	//
+//	@GetMapping("/regions/{id}")
+//	public ResponseEntity<Optional<Region>> getRegionById(@PathVariable(value = "id") String codeRegion) {
+//		Optional<Region> region = regionRepository.findById(codeRegion);
+//		return ResponseEntity.ok().body(region);
+//	}
 	
 	@PutMapping("/regions/ajout")
 	public void addNewRegion() {

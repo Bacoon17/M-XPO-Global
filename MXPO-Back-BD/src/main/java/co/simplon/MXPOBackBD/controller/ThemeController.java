@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.MXPOBackBD.api.RequetesAPI;
-import co.simplon.MXPOBackBD.model.Ville;
-import co.simplon.MXPOBackBD.repository.VilleRepository;
+import co.simplon.MXPOBackBD.model.Theme;
+import co.simplon.MXPOBackBD.repository.ThemeRepository;
 
 @RestController
 @CrossOrigin("*")
-public class VilleController {
+public class ThemeController {
 
 	@Autowired
-	private VilleRepository villeRepository;
+	private ThemeRepository themeRepository;
 	
-	@PutMapping("/villes/ajout")
-	public void addNewVille() {
+	@PutMapping("/themes/ajout")
+	public void addNewTheme() {
 		RequetesAPI requete = new RequetesAPI();
 		
-		List<Ville> villeListe = requete.enregistrerListeVille();
+		List<Theme> themeListe = requete.enregistrerListeTheme();
 		
-		villeRepository.saveAll(villeListe);
+		themeRepository.saveAll(themeListe);
 		
 	}
 	

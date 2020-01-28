@@ -27,8 +27,9 @@ public class Ville {
 	private String codeVille;
 	private String codePostal;
 	private String nomVille;
-	private String codeDepartement;
 	
+	private String codeDepartement;
+
 	@OneToMany
 	@JoinColumn(name="codeVille")
 	private Collection<Musee> musees;

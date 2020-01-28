@@ -3,6 +3,7 @@ package co.simplon.MXPOBackBD.api;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -12,9 +13,13 @@ import org.json.JSONObject;
 import co.simplon.MXPOBackBD.model.Departement;
 import co.simplon.MXPOBackBD.model.Musee;
 import co.simplon.MXPOBackBD.model.Region;
+import co.simplon.MXPOBackBD.model.Theme;
 import co.simplon.MXPOBackBD.model.Ville;
 
 public class RequetesAPI {
+	
+//	@Autowired
+//	private VilleRepository villeRepository;
 	
 	String UrlApi = "https://geo.api.gouv.fr/communes?fields=nom,code,codesPostaux,departement,region&format=json&geometry=centre";
 	String UrlApiMusee = "https://data.culture.gouv.fr/api/records/1.0/search/?dataset=musees-de-france-base-museofile&rows=1216";
@@ -197,47 +202,50 @@ public class RequetesAPI {
 		return listeMusee;
 	}
 
-//	public List<Theme> enregistrerListeTheme() {
-//		
-//		List<Theme> listeTheme = new ArrayList<>();
-//		
-//		JSONArray museeJsonArray = null;
-//		
-//		try {
-//			URL museeURL = new URL(UrlApiMusee);
-//			String museeString = IOUtils.toString(museeURL, StandardCharsets.UTF_8);
-//			museeJsonArray = new JSONObject(museeString).getJSONArray("records");
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		for (Object museeObject : museeJsonArray) {
-//			
-//			JSONObject museeJson = (JSONObject) museeObject;
-//			
-//			Theme theme = new Theme();
-//			HashSet<Theme> listeEnCours = new HashSet<>();
-//			
-//			if (museeJson.getJSONObject("fields").has("themes")) {
-//				String nomTheme = museeJson.getJSONObject("fields").getString("dompal");
-//				
-//				String themeTab[] = nomTheme.split(";");
-//				
-//				for (int i = 0; i < themeTab.length; i++) {
-//					themeTab[i].toLowerCase().trim();
-//					listeTheme
-//				}
-//				
-//				HashSet<Integer> HSList2 = new HashSet<>(list2);
-//				
-//				
-//			}
-//		
-//		
-//			listeTheme.add(theme);
-//		}
-//		
-//		return listeTheme;
-//	}
+	public List<Theme> enregistrerListeTheme() {
+		
+		List<Theme> listeTheme = new ArrayList<>();
+		
+		JSONArray museeJsonArray = null;
+		
+		try {
+			URL museeURL = new URL(UrlApiMusee);
+			String museeString = IOUtils.toString(museeURL, StandardCharsets.UTF_8);
+			museeJsonArray = new JSONObject(museeString).getJSONArray("records");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		HashSet<Theme> listeComplete = new HashSet<>();
+		
+		for (Object museeObject : museeJsonArray) {
+			
+			JSONObject museeJson = (JSONObject) museeObject;
+			Theme theme = new Theme();
+			
+			if (museeJson.getJSONObject("fields").has("themes")) {
+				String nomTheme = museeJson.getJSONObject("fields").getString("dompal");
+				String themeTab[] = nomTheme.split(";");
+				
+				HashSet<Theme> listeIntermediaire = new HashSet<>();
+				
+				for (int i = 0; i < themeTab.length; i++) {
+					theme.setNomTheme(themeTab[i].toLowerCase().trim());
+					
+//					if (museeJson.getJSONObject("fields").has("ref")) {
+//						String idMusee = museeJson.getJSONObject("fields").getString("ref");
+//						theme.setIdMusee(idMusee);	
+//					}
+					
+					listeIntermediaire.add(theme);
+				}
+					listeComplete.addAll(listeIntermediaire);
+			}
+			
+		}
+		
+		listeTheme = new ArrayList<>(listeComplete);
+		return listeTheme;
+	}
 }
