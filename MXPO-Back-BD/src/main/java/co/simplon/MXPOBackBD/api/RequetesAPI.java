@@ -3,28 +3,31 @@ package co.simplon.MXPOBackBD.api;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import co.simplon.MXPOBackBD.model.Departement;
 import co.simplon.MXPOBackBD.model.Musee;
 import co.simplon.MXPOBackBD.model.Region;
 import co.simplon.MXPOBackBD.model.Theme;
 import co.simplon.MXPOBackBD.model.Ville;
+import co.simplon.MXPOBackBD.repository.ThemeRepository;
 
 public class RequetesAPI {
-	
-//	@Autowired
-//	private VilleRepository villeRepository;
 	
 	String UrlApi = "https://geo.api.gouv.fr/communes?fields=nom,code,codesPostaux,departement,region&format=json&geometry=centre";
 	String UrlApiMusee = "https://data.culture.gouv.fr/api/records/1.0/search/?dataset=musees-de-france-base-museofile&rows=1216";
 	
 	JSONArray localisationJsonArray = null;
+	
+	@Autowired
+	private ThemeRepository themerepository;
 	
 	public List<Region> enregistrerListeRegion() {
 		
@@ -196,6 +199,13 @@ public class RequetesAPI {
 				musee.setDescription(description);
 			}
 			
+			if (museeJson.getJSONObject("fields").has("themes")) {
+				String listeThemeString = museeJson.getJSONObject("fields").getString("dompal");
+				musee.setListeThemeString(listeThemeString);
+			} else {
+				musee.setListeThemeString("Aucun thème associé");
+			}
+			
 			listeMusee.add(musee);
 		}
 		
@@ -232,12 +242,6 @@ public class RequetesAPI {
 				
 				for (int i = 0; i < themeTab.length; i++) {
 					theme.setNomTheme(themeTab[i].toLowerCase().trim());
-					
-//					if (museeJson.getJSONObject("fields").has("ref")) {
-//						String idMusee = museeJson.getJSONObject("fields").getString("ref");
-//						theme.setIdMusee(idMusee);	
-//					}
-					
 					listeIntermediaire.add(theme);
 				}
 					listeComplete.addAll(listeIntermediaire);
@@ -246,6 +250,56 @@ public class RequetesAPI {
 		}
 		
 		listeTheme = new ArrayList<>(listeComplete);
+		
+		Theme themeVide = new Theme();
+		themeVide.setNomTheme("Aucun thème associé");
+		listeTheme.add(themeVide);
+		
 		return listeTheme;
+	}
+
+	public List<Theme> recupererListeThemeParMusee(String themeMuseeString) {
+		// Initialisation d'un objet thème
+		Theme theme = new Theme();
+		List<Theme> listeThemeBD = new ArrayList<>();
+		
+		// Initialiser des variables qui seront les variables par défaut si aucun thème n'est présent pour un musée
+		int idTheme = 12;
+		String nomTheme = "Aucun thème associé";
+		
+		// Récupérer la liste des thèmes présent dans la BD
+		listeThemeBD = themerepository.findAll();
+		System.out.println(listeThemeBD);
+		
+		// Instancier une liste de thème vide
+		List<Theme> themeParMusee = new ArrayList<>();
+//		
+//		// Parser les thèmes d'un musée dans un tableau
+//		String[] themeTab = themeMuseeString.split(";");
+//		
+//		// Parcourir le tableau des thèmes d'un musée et les comparer à chaque thème enregistré dans la base (double boucle for)
+//		for (int i = 0; i < themeTab.length; i++) {
+//			
+//			for (Theme themeBD : listeThemeBD) {
+//				
+//				if (themeBD.getNomTheme() == themeTab[i].toLowerCase().trim()) {
+//										
+//					idTheme = themeBD.getIdTheme();
+//					nomTheme = themeBD.getNomTheme();
+//					break;
+//					
+//				}				
+//				
+//				theme.setIdTheme(idTheme);
+//				theme.setNomTheme(nomTheme);
+//				
+//			}
+//			
+//			themeParMusee.add(theme);
+//			
+//		}
+		
+		return themeParMusee;
+		
 	}
 }

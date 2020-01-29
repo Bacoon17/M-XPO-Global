@@ -29,8 +29,10 @@ public class Theme {
 	private int idTheme;
 	private String nomTheme;
 	
-	private String idMusee;
 	
-	@ManyToMany
-	private Collection<Musee> musees;
+	
+	// private String idMusee;
+	
+//	@ManyToMany
+//	private Collection<Musee> musees;
 }

@@ -1,8 +1,12 @@
 package co.simplon.MXPOBackBD.model;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -32,4 +36,9 @@ public class Musee {
 	
 	private String codeVille;
 	
+//	@Transient
+	private String listeThemeString;
+	
+	@ManyToMany
+	private Collection<Theme> themes;
 }
