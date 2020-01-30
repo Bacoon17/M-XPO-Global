@@ -24,6 +24,7 @@ public class RequetesAPI {
 	String UrlApi = "https://geo.api.gouv.fr/communes?fields=nom,code,codesPostaux,departement,region&format=json&geometry=centre";
 	String UrlApiMusee = "https://data.culture.gouv.fr/api/records/1.0/search/?dataset=musees-de-france-base-museofile&rows=1216";
 	
+	
 	JSONArray localisationJsonArray = null;
 	
 	@Autowired
