@@ -36,9 +36,9 @@ public class Musee {
 	
 	private String codeVille;
 	
-//	@Transient
+	@Transient
 	private String listeThemeString;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "musees")
 	private Collection<Theme> themes;
 }
