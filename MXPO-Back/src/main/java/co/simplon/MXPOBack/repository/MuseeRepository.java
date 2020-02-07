@@ -12,4 +12,6 @@ public interface MuseeRepository extends JpaRepository<Musee, String> {
 	
 	List<Musee> findByCodeVille(String codeVille);
 	
+	
+	
 }

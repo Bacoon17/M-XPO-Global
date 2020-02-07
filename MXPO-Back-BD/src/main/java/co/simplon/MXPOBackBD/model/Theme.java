@@ -29,7 +29,7 @@ public class Theme {
 	private int idTheme;
 	private String nomTheme;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "themes")
 	private Collection<Musee> musees;
 	
 }

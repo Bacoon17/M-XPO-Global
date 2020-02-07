@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,6 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@JsonIgnoreProperties("themes")
 public class Musee {
 
 	@Id
@@ -39,6 +42,6 @@ public class Musee {
 	@Transient
 	private String listeThemeString;
 	
-	@ManyToMany(mappedBy = "musees")
+	@ManyToMany
 	private Collection<Theme> themes;
 }
