@@ -1,0 +1,67 @@
+.carteInteractive {
+    margin-top: 10px;
+    height: 100%;
+    border-radius: 5px;
+    flex: 1;
+    align-self: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 22em;
+}
+
+.carteInteractive path {
+    /* fill: #736767; */
+    fill: #686773;
+    stroke: #FFF;
+    stroke-width: 1px;
+    transition: fill 0.3s;
+}
+
+.carteInteractive path:hover {
+    opacity: .8;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background: #686773;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    transition: .5s;
+}
+
+input:checked[type="checkbox"] {
+    background: #2196f3;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transition: .5s;
+}
+
+input:checked[type="checkbox"]::before {
+    left: 20px;
+}
+
+.boutonGPS {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.geoloc {
+    color: white;
+    padding-left: 10px;
+}

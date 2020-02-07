@@ -1,0 +1,45 @@
+.searchBar {
+
+  margin: 1em auto;
+  background: rgba(0,0,0,0.6);
+  max-width: 550px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+}
+
+
+
+.searchBar .inputSearchBar {
+  width: 60%;
+  padding : 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.searchBar select {
+  width: 20%;
+  padding : 10px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.searchBttn {
+  position: relative;
+  cursor: pointer;
+  width: 10%;
+}
+
+.searchBttn .material-icons {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

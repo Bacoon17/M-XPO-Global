@@ -1,0 +1,18 @@
+
+.page{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-image: url(../assets/images/background.jpg);
+  background-position:50% 50%;
+}
+
+
+.container{
+  flex-grow: 1;
+}
+
+
