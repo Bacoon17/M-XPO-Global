@@ -1,6 +1,7 @@
 package co.simplon.MXPOBack.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,11 @@ public class DepartementController {
 	@GetMapping("/departements")
 	public List<Departement> getAllDepartement() {
 		return departementRepository.findAll();
+	}
+	
+	@GetMapping("/departements/{id}")
+	public Optional<Departement> getDepartementById(@PathVariable(value = "id") String codeDepartement) {
+		return departementRepository.findById(codeDepartement);
 	}
 	
 	@GetMapping("regions/{id}/departements")

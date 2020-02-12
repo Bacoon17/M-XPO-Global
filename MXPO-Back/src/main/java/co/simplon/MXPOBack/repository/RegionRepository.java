@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 import co.simplon.MXPOBack.model.Region;
 
 @Repository
-public interface RegionRepository extends JpaRepository<Region, String> {}
+public interface RegionRepository extends JpaRepository<Region, String> {
+	
+}

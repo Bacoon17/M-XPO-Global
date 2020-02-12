@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.MXPOBack.model.Region;
-
 import co.simplon.MXPOBack.repository.RegionRepository;
 
 
