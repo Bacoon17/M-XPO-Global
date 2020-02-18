@@ -1,0 +1,16 @@
+.typeRecherche {
+    margin: .5em auto;
+    border-radius: 5px;
+    justify-content: space-around;
+    text-align: center;
+   
+}
+
+.typeRecherche select {
+    width: 12em;
+    margin: 8px;
+    padding : 10px 10px;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+}

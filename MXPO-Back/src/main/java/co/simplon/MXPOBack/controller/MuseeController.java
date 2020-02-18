@@ -152,6 +152,14 @@ public class MuseeController {
 		return listeMusee;
 	}
 	
-	
-	
+	@GetMapping("/themes/{id}/musees")
+	public List<Musee> getMuseesParTheme(@PathVariable(value = "id") int idTheme) {
+		
+		
+		List<Musee> listeMusee = new ArrayList<>();
+		
+		
+		
+		return listeMusee;
+	}
 }

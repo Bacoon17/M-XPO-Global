@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MuseeService} from '../musee.service';
 
 @Component({
   selector: 'app-musee',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MuseeComponent implements OnInit {
 
-  constructor() { }
+  codeMusee: String;
+
+  constructor(private museeService: MuseeService) {
+  }
 
   ngOnInit() {
+  }
+
+  onCodeMusee(st : String) {
+    this.codeMusee = st;
   }
 
 }

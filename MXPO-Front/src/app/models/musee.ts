@@ -1,13 +1,13 @@
 export class Musee {
-    idMusee: String;
-    nomMusee: String;
-    adresse: String;
-    ville: String;
-    siteWeb: String;
-    geolocalisation: String;
-    description: String;
+    idMusee: string;
+    nomMusee: string;
+    adresse: string;
+    ville: string;
+    siteWeb: string;
+    geolocalisation: string;
+    description: string;
 
-    constructor(id: String, nom: String, adr: String, vil: String, site: String, geo: String, des: String) {
+    constructor(id: string, nom: string, adr: string, vil: string, site: string, geo: string, des: string) {
         this.idMusee = id;
         this.nomMusee = nom;
         this.adresse = adr;

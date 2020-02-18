@@ -1,1 +1,28 @@
-<p>theme works!</p>
+<div class='conteneurAll'>
+    <!--Composant 2 : Barre de recherche-->
+
+    <app-search-musee></app-search-musee>
+
+        <!--Composant 3 : Bloc affichage-->
+    <section class="conteneurCentral">
+        
+        <div class="blocGauche">
+            <app-liste-deroulante-themes (codeThemeSelectionne)="onCodecodeThemeSelectionne($event)"></app-liste-deroulante-themes>
+            <app-image-themes></app-image-themes>
+        </div>
+        
+        <div class="blocDroite">
+
+            <div class="mat-app-background basic-container">
+                <app-tableau-resultat-musee [codeTheme]="codeTheme" (codeMusee)="onCodeMusee($event)"></app-tableau-resultat-musee>
+            </div>
+            
+        </div>
+
+        <div class="blocMusee">
+            <app-fiche-musee [codeMusee]="codeMusee"></app-fiche-musee>
+        </div>
+
+    </section>
+
+</div>

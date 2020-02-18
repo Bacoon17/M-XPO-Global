@@ -31,6 +31,16 @@ export class MuseeService {
     return this.http.get(this.baseUrl + "regions/" + codeRegion + "/departements");
   }
 
+  // Récupérer le JSON d'un département spécifique
+  getRegionByDepartement(codeDepartement: String) : Observable<any> {
+    return this.http.get(this.baseUrl + "departements/" + codeDepartement);
+  }
+
+  // Récupérer le JSON des villes d'une région spécifique
+  getVillesByRegion(codeRegion: String) : Observable<any> {
+    return this.http.get(this.baseUrl + "regions/" + codeRegion + "/villes");
+  }
+  
   // Récupérer le JSON des villes d'un département spécifique
   getVillesByDepartement(codeDepartement: String) : Observable<any> {
     return this.http.get(this.baseUrl + "departements/" + codeDepartement + "/villes");
@@ -59,6 +69,16 @@ export class MuseeService {
   // Récupérer le JSON d'un musée spécifique
   getMuseeById(idMusee : String) : Observable<any> {
     return this.http.get(this.baseUrl + "musees/" + idMusee);
+  }
+
+  // Récupérer le JSON des musées recherché
+  getMuseeByRecherche(museeARechercher : String) : Observable<any> {
+    return this.http.get(this.baseUrl + "musees/rechercheMusee/" + museeARechercher);
+  }
+
+  // Récupérer le JSON des musées par thème
+  getMuseesByTheme(idTheme : number) : Observable<any> {
+    return this.http.get(this.baseUrl + "themes/" + idTheme + "/musees");
   }
 
 }

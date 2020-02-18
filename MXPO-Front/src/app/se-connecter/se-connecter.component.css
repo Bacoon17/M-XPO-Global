@@ -9,6 +9,7 @@ form {
 
   width:100%;
   padding: 40px;
+  margin-bottom: 25px;
   border: 1px solid #f1f1f1;
   border-radius: 15px;
   background: #fff;
@@ -31,9 +32,19 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+a {
+  cursor: pointer;
+  color:#2196f3;
+  text-decoration: underline;
+}
 
-input[type=submit] {
-  background-color: #53af57;
+span {
+  color: #2ECC71;
+  font-size: 20px;
+}
+
+button[type=submit] {
+  background-color: #2196f3;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -41,8 +52,8 @@ input[type=submit] {
   cursor: pointer;
   width: 100%;
 }
-input[type=submit]:hover {
+button[type=submit]:hover {
   background-color: white;
-  color: #53af57;
-  border: 1px solid #53af57;
+  color: #2196f3;
+  border: 1px solid #2196f3;
 }

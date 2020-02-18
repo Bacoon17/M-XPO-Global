@@ -16,12 +16,17 @@
 }
 
 .blocGauche{
-    flex:1;
+    flex:0.8;
     align-self: center;
 }
 
 .blocDroite {
-    flex:2;
+    flex:1.5;
     display: flex;
     flex-direction: column;
+}
+
+.blocMusee {
+    flex:1;
+    align-self: center;
 }

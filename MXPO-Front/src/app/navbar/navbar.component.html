@@ -1,5 +1,5 @@
 <header class="navbar">
-  <div class="logo">{{title}}</div>
+  <img src="https://zupimages.net/up/20/07/ot27.png">
   <nav [className]="activeMenu ? 'active' : 'inactive'">
     <ul>
       <li><a routerLink="/accueil" class="nav-link" routerLinkActive="active">Accueil</a></li>
@@ -9,7 +9,20 @@
       <li><a routerLink="/themes" class="nav-link" routerLinkActive="active">Thèmes</a></li>
       <li><a routerLink="/artistes" class="nav-link" routerLinkActive="active">Artistes</a></li>
       <li><a routerLink="/oeuvres" class="nav-link" routerLinkActive="active">Oeuvres</a></li>
-      <li><a routerLink="/seconnecter" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+
+      <li *ngIf="!auth.isLoggedIn()" ><a  routerLink="/seconnecter" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+
+      <li *ngIf="auth.isLoggedIn()" >
+        <div class="dropdown">
+          <button  id="button" >{{nom}} {{prenom}}</button>
+            <div class="dropdown-content" >
+              <a>favoris</a>
+              <a>modifier profil</a>
+              <a (click)="auth.logout()"> déconnexion </a>
+            </div>
+       </div>
+      </li>
+
     </ul>
   </nav>
 

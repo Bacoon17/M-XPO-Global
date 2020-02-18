@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { Region } from '../models/region';
 import { MuseeService } from '../musee.service';
 import { Departement } from '../models/departement';
@@ -19,9 +19,15 @@ export class ListeDeroulanteEnCascadeComponent implements OnInit {
   listDepartements: Departement[];
   listVilles: Ville[];
   activeListe: boolean = true;
-  selected="-1";
+  selected = "-1";
 
   @Input() codeRegionCarte: String;
+
+  @Output() codeRegionListeDeroulante = new EventEmitter<String>();
+
+  @Output() codeDepartementListeDeroulante = new EventEmitter<String>();
+
+  @Output() codeVilleListeDeroulante = new EventEmitter<String>();
 
   constructor(private museeService: MuseeService) { }
 
@@ -32,10 +38,8 @@ export class ListeDeroulanteEnCascadeComponent implements OnInit {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    console.log(this.selected);
-    
+
     for (let propName in changes) {
-      console.log(propName, changes[propName].currentValue);
       if (propName === 'codeRegionCarte') {
         // Récupérer le codeRegion de l'entité Parent suite au changement de l'attribut constaté par ngOnChanges
         let codeRegion = changes[propName].currentValue;
@@ -43,8 +47,10 @@ export class ListeDeroulanteEnCascadeComponent implements OnInit {
         this.selected = codeRegion;
         // Télécharger la liste de tous les départements pour la région sélectionnée sur la carte
         this.getAllDepartementsByRegion(codeRegion);
+        this.getAllVillesByRegion(codeRegion);
+        this.activeListe = false;
       }
-    } 
+    }
   }
 
   // Fonctions associées au Back
@@ -68,37 +74,86 @@ export class ListeDeroulanteEnCascadeComponent implements OnInit {
   }
 
   getAllDepartementsByRegion(codeRegion: String) {
-    this.museeService.getDepartementsByRegion(codeRegion).subscribe((departements: Departement[]) => {
-      this.listDepartements = departements;
+    if (codeRegion !== "-1") {
+      this.listDepartements=[]
+      this.museeService.getDepartementsByRegion(codeRegion).subscribe((departements: Departement[]) => {
+        this.listDepartements = departements;
+      })
+    }
+  }
+
+  getAllVillesByRegion(codeRegion: String) {
+    this.museeService.getVillesByRegion(codeRegion).subscribe((villes: Ville[]) => {
+      this.listVilles = villes;
+      // Trier la liste par ordre alphabétique sur le critère de nomVille
+      this.listVilles.sort((a, b) => { return a.nomVille > b.nomVille ? 1 : -1;});
     })
   }
 
   getAllVillesByDepartement(codeDepartement: String) {
+    this.listVilles = [];
     this.museeService.getVillesByDepartement(codeDepartement).subscribe((villes: Ville[]) => {
       this.listVilles = villes;
+      this.activeListe = false;
     })
+  }
+
+  getRegionByDepartement(codeDepartement: String) {
   }
 
   // Fonctions des évènements associés
 
   handleSelectRegion(evt) {
     let codeRegion = evt.target.value;
-
+  
     if (codeRegion !== "-1") {
       this.getAllDepartementsByRegion(codeRegion);
-      // Activer la liste des villes
+      this.getAllVillesByRegion(codeRegion);
+      // Activer la liste des villes      
       this.activeListe = false;
+    
+      // Récupérer le codeRegionListeDéroulante pour la tableMusée
+      this.codeRegionListeDeroulante.emit(codeRegion);
+    
+    
     } else {
       this.getAllDepartements();
       // Désactiver la liste des villes
+      this.getAllVilles();
       this.activeListe = true;
+
+      this.codeRegionListeDeroulante.emit(codeRegion);
+      
     }
 
   }
 
   handleSelectDepartement(evt) {
     let codeDepartement = evt.target.value;
-    this.getAllVillesByDepartement(codeDepartement);
+
+    if (codeDepartement !== "-1") {
+      this.getAllVillesByDepartement(codeDepartement);
+      // TODO : Afficher la bonne région automatiquement
+
+      // Activer la liste des villes
+      this.activeListe = true;
+
+      this.codeDepartementListeDeroulante.emit(codeDepartement);
+    }
+    
+  }
+
+  handleSelectVille(evt) {
+    let codeVille = evt.target.value;
+
+    console.log("Code Ville LD : "+codeVille);
+
+    if (codeVille !== "-1") {
+      // TODO : Afficher le bon département automatiquent
+      // TODO : Afficher la bonne région automatiquement
+
+      this.codeVilleListeDeroulante.emit(codeVille);
+    }
   }
 
 }

@@ -1,14 +1,24 @@
 <div class="containerAll">
-  <div class="containerPrincipal">
-    <div class="nomMusee">
-<!--      <h3>{{musee.nomMusee}} nomdumusee</h3>-->
-      <h3>nom du musée</h3>
-    </div>
-    <div class="containerPhoto"></div>
-    <div class="containerDescription">
-    </div>
-    <div class="containerOeuvre">
+  
+  <app-search-musee></app-search-musee>
 
-    </div>
-  </div>
+  <section class="conteneurCentral">
+      
+      <div class="blocGauche">
+        <app-image-musees></app-image-musees>
+      </div>
+      
+      <div class="blocDroite">
+        
+        <div class="mat-app-background basic-container">
+          <app-tableau-resultat-musee (codeMusee)="onCodeMusee($event)"></app-tableau-resultat-musee>
+        </div>
+      </div>
+
+      <div class="blocMusee">
+        <app-fiche-musee [codeMusee]="codeMusee"></app-fiche-musee>
+      </div>
+
+  </section>
+
 </div>

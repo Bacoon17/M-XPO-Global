@@ -8,18 +8,30 @@
         
         <div class="blocGauche">
             <app-carte-region (codeRegionCarte)="onCodeRegionCarte($event)"></app-carte-region>
+            <app-liste-deroulante-en-cascade 
+                [codeRegionCarte]="codeRegionCarte" 
+                (codeRegionListeDeroulante)="onCodeRegionListeDeroulante($event)" 
+                (codeDepartementListeDeroulante)="onCodeDepartementListeDeroulante($event)" 
+                (codeVilleListeDeroulante)="onCodeVilleListeDeroulante($event)">
+            </app-liste-deroulante-en-cascade>
         </div>
         
         <div class="blocDroite">
 
-            <app-liste-deroulante-en-cascade [codeRegionCarte]="codeRegionCarte" ></app-liste-deroulante-en-cascade>
-
-            <!-- <app-tableau-resultat-musee></app-tableau-resultat-musee> -->
-
             <div class="mat-app-background basic-container">
-                <app-tableau-resultat-musee>loading</app-tableau-resultat-musee>
+                <app-tableau-resultat-musee 
+                    [codeRegionListeDeroulante]="codeRegionListeDeroulante"
+                    [codeDepartementListeDeroulante]="codeDepartementListeDeroulante"
+                    [codeVilleListeDeroulante]="codeVilleListeDeroulante"
+                    [codeRegionCarte]="codeRegionCarte"
+                    (codeMusee)="onCodeMusee($event)">
+                </app-tableau-resultat-musee>
             </div>
-            
+
+        </div>
+
+        <div class="blocMusee">
+            <app-fiche-musee [codeMusee]="codeMusee"></app-fiche-musee>
         </div>
 
     </section>

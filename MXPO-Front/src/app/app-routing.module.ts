@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'artistes', component: ArtistesComponent },
   { path: 'localisation', component: LocalisationComponent },
   { path: 'musees', component: MuseeComponent },
+  { path: 'musees/:idMusee', component: MuseeComponent },
   { path: 'seconnecter', component: SeConnecterComponent },
   { path: 'themes', component: ThemeComponent},
   { path: 'oeuvres', component: OeuvreComponent},
@@ -23,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

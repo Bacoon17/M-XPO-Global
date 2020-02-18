@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="affichage === true">
 
-  <form action="verification.php" method="POST">
+  <form method="POST">
     <h1>Connexion</h1>
 
     <label>E-mail</label>
@@ -9,7 +9,48 @@
     <label>Mot de passe</label>
     <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-    <input type="submit" id='submit' value='LOGIN' >
+    <button type="submit" id='submit' value='CONNEXION' >CONNEXION</button>
+    <a (click)="onInscription()" >créer un compte</a>
 
   </form>
 </div>
+
+
+<div   class="container" *ngIf="affichage === false">
+
+  <form method="POST" (ngSubmit)="inscription()" >
+    <h1>Inscription</h1>
+
+    <label>Nom</label>
+    <input type="text" placeholder="Entrer votre nom" name="nom"  [(ngModel)]="user.nom" required>
+
+    <label>Prenom</label>
+    <input type="text" placeholder="Entrer votre prénom" name="prenom"  [(ngModel)]="user.prenom" required>
+
+    <label>E-mail</label>
+    <input type="text" placeholder="Entrer votre e-mail" name="email"  [(ngModel)]="user.mail" required>
+
+
+    <label>voie</label>
+    <input type="text" placeholder="Entrer votre voie" name="voie"  [(ngModel)]="user.voie" required>
+
+    <label>code postal</label>
+    <input type="text" placeholder="Entrer votre CP" name="code_postal"  [(ngModel)]="user.codePostal" required>
+
+    <label>ville</label>
+    <input type="text" placeholder="Entrer votre ville" name="ville"  [(ngModel)]="user.ville" required>
+
+    <label>Mot de passe</label>
+    <input type="password" placeholder="Entrer un mot de passe" name="password"  [(ngModel)]="user.mdp" required>
+
+    <span>Votre compte a bien était créer</span>
+
+    <button type="submit" id='submit' value='INSCRIPTION'>INSCRIPTION</button>
+
+    <a (click)="onConnexion()">cancel</a>
+
+  </form>
+</div>
+
+
+

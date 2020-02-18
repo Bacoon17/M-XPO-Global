@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import co.simplon.MXPOBack.model.OeuvreArtiste;
-import co.simplon.MXPOBack.model.Region;
 
 public class RequeteAPI {
 
@@ -19,17 +18,11 @@ public class RequeteAPI {
 	String urlRechercheLocalisationDepartement = "https://geo.api.gouv.fr/departements?nom=";
 	String urlRechercheLocalisationRegion = "https://geo.api.gouv.fr/regions?nom=";
 	String urlRechercheArtisteOeuvres = "https://data.culture.gouv.fr/api/records/1.0/search/?dataset=base-joconde-extrait&q=";
-	// En cours
-
-	//TODO
-	String urlRechercheExposition = "https://opendata.paris.fr/api/records/1.0/search/?q=";
 	
 	String urlFiltreMusee = "&dataset=musees-de-france-base-museofile&rows=1216";
 	
-	// En cours
-	
-
 	//TODO
+	String urlRechercheExposition = "https://opendata.paris.fr/api/records/1.0/search/?q=";
 	String urlFiltreExposition = "&dataset=que-faire-a-paris-&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=access_type&facet=price_type&refine.category=Expositions+";
 	
 	/**

@@ -28,6 +28,8 @@ public class ThemeController {
 	@GetMapping("/themes/{id}/musees")
 	public ResponseEntity<Optional<Theme>> getThemeById(@PathVariable(value = "id") int idTheme) {
 		Optional<Theme> theme = themeRepository.findById(idTheme);
+		
+		
 		return ResponseEntity.ok().body(theme);
 	}
 	

@@ -27,9 +27,9 @@ public class User {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idUser;
 
-	private String nomUser;
-	private String prenomUser;
-	private String mailUser;
+	private String nom;
+	private String prenom;
+	private String mail;
 	private String voie;
 	private String codePostal;
 	private String ville;

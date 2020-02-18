@@ -15,7 +15,6 @@ export class CarteRegionComponent implements OnInit {
   }
 
   recupererCodeRegion(valeur : String) {
-    console.log(valeur);
     this.codeRegionCarte.emit(valeur);
   }
 
